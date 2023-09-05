@@ -64,10 +64,7 @@ class BinaryTree:
             return self.buscar_value_recursive(node.right, value)
         
     def height_tree(self):
-        if self.root is None:
-            return 0
-        else:
-            return self.height_tree_recursive(self.root)
+        return self.height_tree_recursive(self.root) - 1
         
     def height_tree_recursive(self, node):
         if node is None:
@@ -77,11 +74,28 @@ class BinaryTree:
             right_tree = self.height_tree_recursive(node.right)
             return max(left_tree, right_tree) + 1
         
+    def node_interno(self, node):
+        if node is None:
+            return
+        if node.left or node.right:
+            print(node.value, end=" ")
+        self.node_interno(node.left)
+        self.node_interno(node.right)
+        
+    def folha(self, node):
+        if node is None:
+            return
+        if node.left is None and node.right is None:
+            print(node.value, end=" ")
+        self.folha(node.left)
+        self.folha(node.right)
+        
 binarytree = BinaryTree()
 
 value = list()
+QTD_VALUE_TREE = 7
 
-while len(value) < 7:
+while len(value) < QTD_VALUE_TREE:
     i = randint(1, 30)
     if i not in value:
         binarytree.insert(i)
@@ -93,6 +107,14 @@ print()
 
 print(f'Raiz: {binarytree.mostrar_root()}')
 print(f'Altura: {binarytree.height_tree()}')
+
+print('Nós internos: ')
+binarytree.node_interno(binarytree.root)
+print()
+
+print('Folhas: ')
+binarytree.folha(binarytree.root)
+print()
 
 value_find = int(input('Buscar valor: '))
 
