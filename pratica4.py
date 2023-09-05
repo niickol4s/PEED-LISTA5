@@ -79,13 +79,14 @@ class BinaryTree:
         
 binarytree = BinaryTree()
 
-binarytree.insert(5)
-binarytree.insert(3)
-binarytree.insert(7)
-binarytree.insert(2)
-binarytree.insert(4)
-binarytree.insert(6)
-binarytree.insert(8)
+value = list()
+
+while len(value) < 7:
+    i = randint(1, 30)
+    if i not in value:
+        binarytree.insert(i)
+        value.append(i)
+
 print('Árvore em pós-ordem: ')
 binarytree.pos_order()
 print()
@@ -93,10 +94,11 @@ print()
 print(f'Raiz: {binarytree.mostrar_root()}')
 print(f'Altura: {binarytree.height_tree()}')
 
-value_find = 10
-print(f'Buscar valor: {value_find}.')
+value_find = int(input('Buscar valor: '))
 
 if binarytree.buscar_value(value_find):
     print('Valor presente.')
 else:
     print('Valor ausente.')
+    
+    
